@@ -15,21 +15,15 @@ import {
 
 import "./cart-item.styles.scss";
 
-function CartItem(
-  id: any,
-  collectionItem: {
-    filename: string;
-    actual_price: string;
-    product_name: string;
-    quantity: number;
-  }
-) {
+function CartItem(props: { collectionItem: any }) {
   const dispatch = useDispatch();
 
-  const { filename, actual_price, product_name, quantity } = collectionItem;
+  const { filename, actual_price, product_name, quantity } =
+    props.collectionItem;
 
   const actualPrice = parseFloat(actual_price).toFixed(2);
   const Total = Number(actualPrice) * quantity;
+
   return (
     <div className="cart-item__container">
       <div className="cart-item__-image-container">
@@ -38,18 +32,18 @@ function CartItem(
 
       <div className="cart-item__details-container">
         <span>
-          {product_name.length > 10
+          {product_name?.length > 10
             ? product_name.toLowerCase()
             : `${product_name.toLowerCase().slice(0, 20)}...`}
         </span>
         <span className="cart-item__price-container">
           <MdOutlineKeyboardArrowLeft
-            onClick={() => dispatch(removeItemFromCart(collectionItem))}
+            onClick={() => dispatch(removeItemFromCart(props.collectionItem))}
             size={23}
           />
           {quantity}
           <MdOutlineKeyboardArrowRight
-            onClick={() => dispatch(addItemtoCart(collectionItem))}
+            onClick={() => dispatch(addItemtoCart(props.collectionItem))}
             size={23}
           />
           {Total.toFixed(2)}€
@@ -57,7 +51,7 @@ function CartItem(
       </div>
       <div className="cart-item__icon-container">
         <MdClear
-          onClick={() => dispatch(clearItemFromCart(collectionItem))}
+          onClick={() => dispatch(clearItemFromCart(props.collectionItem))}
           size={20}
         />
       </div>

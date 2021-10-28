@@ -24,7 +24,7 @@ function OverviewCollection(props: { dataToRender: string[] }) {
   const [searchInput, setSearchInput] = useState("");
   const [filteredResults, setFilteredResults] = useState([]);
   const dispatch = useDispatch();
-  console.log("DATA TO RENDER", props);
+
   //total number of products
   let numOfRecords = props.dataToRender?.length;
   let maxProductsPerPage = 20;
@@ -33,7 +33,6 @@ function OverviewCollection(props: { dataToRender: string[] }) {
   const lastPage = 97;
 
   const onPageChanged = (page: any) => {
-    console.log("que es page", page);
     if (page !== firstPage && page !== lastPage) setCurrentPage(page);
   };
 
@@ -64,7 +63,6 @@ function OverviewCollection(props: { dataToRender: string[] }) {
     setSearchInput(searchValue);
     if (searchInput !== "") {
       const filteredData = props.dataToRender.filter((item: any) => {
-        console.log("AAAA", item);
         return (
           item.brand_name.toLowerCase().includes(searchValue.toLowerCase()) ||
           item.product_name.toLowerCase().includes(searchValue.toLowerCase())
@@ -76,7 +74,6 @@ function OverviewCollection(props: { dataToRender: string[] }) {
     }
   };
   const filterByBrandName = (inputBrand: { value: string; label: string }) => {
-    console.log("mira ahora aqui", inputBrand);
     const brandToFilter = inputBrand.value;
     setSearchInput(brandToFilter);
     if (brandToFilter !== "") {

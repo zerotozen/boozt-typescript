@@ -9,7 +9,7 @@ import CustomButton from "../custom-button/custom-button.component";
 
 import "./cart-dropdown.styles.scss";
 
-function CartDropdown(history: any) {
+function CartDropdown(props: { history: any }) {
   const cartItems = useSelector((state: any) => state.cart.cartItems);
   const dispatch = useDispatch();
   return (
@@ -17,7 +17,9 @@ function CartDropdown(history: any) {
       <div className="cart-dropdown__cart-items">
         {cartItems?.length ? (
           cartItems?.map((cartItem: { id: number }) => (
-            <CartItem key={cartItem.id} item={cartItem} />
+            <div key={cartItem.id}>
+              <CartItem collectionItem={cartItem} />
+            </div>
           ))
         ) : (
           <span className="cart-dropdown__empty-message">
@@ -27,7 +29,7 @@ function CartDropdown(history: any) {
       </div>
       <CustomButton
         onClick={() => {
-          history.push("/checkout");
+          props.history.push("/checkout");
           dispatch(toggleCartHidden());
         }}
       >

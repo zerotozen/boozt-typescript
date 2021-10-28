@@ -16,7 +16,24 @@ import { withRouter } from "react-router-dom";
 
 import "./product-info.styles.scss";
 
-function ProductInfo(history: any, props: { cartItem: any }) {
+// function ProductInfo(
+//   // history: any,
+//   cartItem: {
+//     product_name: string;
+//     brand_name: string;
+//     actual_price: string;
+//     filename: string;
+//     id: string;
+//   }
+// ) {
+//   // const { product_name, brand_name, actual_price, filename, id } = cartItem;
+
+function ProductInfo(
+  // history: any,
+  props: {
+    cartItem: any;
+  }
+) {
   const { product_name, brand_name, actual_price, filename, id } =
     props.cartItem;
 
@@ -29,7 +46,7 @@ function ProductInfo(history: any, props: { cartItem: any }) {
         </div>
       </div>
       <div className="product-info__right-side">
-        <h1>{product_name.toUpperCase()}</h1>
+        <h1>{product_name?.toUpperCase()}</h1>
         <div className="product-info__header-container">
           <span className="product-info__brand-name">{brand_name}</span>
         </div>
@@ -41,9 +58,9 @@ function ProductInfo(history: any, props: { cartItem: any }) {
         <div className="product-info__actual-price">{actual_price}€</div>
         <div className="product-info__buttons-container">
           <div className="product-info__button">
-            <CustomButtom onClick={() => history.push("/checkout")}>
+            {/* <CustomButtom onClick={() => history.push("/checkout")}>
               Buy now
-            </CustomButtom>
+            </CustomButtom> */}
           </div>
           <div className="product-info__button">
             <CustomButtom
@@ -84,5 +101,5 @@ function ProductInfo(history: any, props: { cartItem: any }) {
     </div>
   );
 }
-
-export default withRouter(ProductInfo);
+// export default withRouter(ProductInfo);
+export default ProductInfo;

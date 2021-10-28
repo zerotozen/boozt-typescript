@@ -11,10 +11,7 @@ export function SearchFilter(props: {
   searchInput: string;
   clearSearchInput: () => void;
 }) {
-  console.log("placeholder", typeof props.placeholder);
-  console.log("onInputChange", typeof props.onInputChange);
-  console.log("searchInput", typeof props.searchInput);
-  console.log("clearSearchInput", typeof props.clearSearchInput);
+
   return (
     <div className="search-filter__container">
       <input

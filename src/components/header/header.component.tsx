@@ -14,7 +14,7 @@ const logo = require("../../assets/logo.png");
 
 import "./header.styles.scss";
 
-function Header(history: any) {
+function Header(props: { history: any }) {
   const dispatch = useDispatch();
   const hidden = useSelector((state: any) => state.cart.hidden);
 
@@ -29,7 +29,7 @@ function Header(history: any) {
 
       <div className="header__middle-side">
         <img
-          onClick={() => history.push("/")}
+          onClick={() => props.history.push("/")}
           className="header__logo"
           src={logo}
           alt=""
@@ -37,13 +37,13 @@ function Header(history: any) {
       </div>
       <div className="header__right-side">
         <AiOutlineUser
-          onClick={() => history.push("/signin")}
+          onClick={() => props.history.push("/signin")}
           className="header__icon"
           size={23}
         />
 
         <AiOutlineHeart
-          onClick={() => history.push("/favourites")}
+          onClick={() => props.history.push("/favourites")}
           className="header__icon"
           size={23}
         />
